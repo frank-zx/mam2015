@@ -1,0 +1,62 @@
+.clearfloat{
+	clear: both;
+	height: 0;
+	font-size: 1px;
+	line-height: 0px;
+}
+#nav{
+	filter:alpha(opacity=90);
+	opacity: 0.9;
+	-moz-opacity:0.9;
+	-webkit-opacity:0.9;
+}
+.main{
+	position: relative;
+	width: 1000px;
+	margin: 20px auto 0px auto;
+	background: #FFF;
+	border-radius: 3px;
+}
+.main form{
+	width: 90%;
+	margin: 15px auto 0px auto;
+	padding: 15px 0;
+}
+.main form .form-title{
+	margin-bottom: 10px;
+	height: 25px;
+	border-bottom: 1px solid #ddd;
+}
+.main form .form-title h4{
+	float: right;
+	font-size: 16px;
+	font-weight: 600;
+	color: #F07C0B;
+}
+.main form .title-container .checkbox{
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ddd;
+	height: 39px;
+}
+.main form .title-container .checkbox label{
+	line-height: 29px;
+	overflow: hidden;
+	width: 600px;
+	height: 29px;
+}
+.main form .title-container .checkbox label input{
+	margin-top: 9px;
+}
+.main form .title-container .checkbox button{
+	width: 10%;
+	height: 28px;
+	border-radius: 29px;
+	-webkit-border-radius: 29px;
+	-moz-border-radius: 29px;
+	padding: 2px;
+	float: right;
+	margin-left: 8px;
+}
+.del-control{
+	float: right;
+}

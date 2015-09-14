@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<!-- 指定由spring负责action对象的创建 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!-- 是否启用开发模式 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- struts配置文件改动后，是否重新加载 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<!-- 设置浏览器是否缓存静态内容 -->
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<!-- 请求参数的编码方式 -->
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<!-- 每次HTTP请求系统都重新加载资源文件，有助于开发 -->
+	<constant name="struts.i18n.reload" value="true" />
+	<!-- 文件上传最大值 -->
+	<constant name="struts.multipart.maxSize" value="104857600" />
+	<!-- 让struts2支持动态方法调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<!-- Action名称中是否还是用斜线 -->
+	<constant name="struts.enable.SlashesInActionNames" value="false" />
+	<!-- 允许标签中使用表达式语法 -->
+	<constant name="struts.tag.altSyntax" value="true" />
+	<!-- 对于WebLogic,Orion,OC4J此属性应该设置成true -->
+	<constant name="struts.dispatcher.parametersWorkaround" value="false" />
+
+	<package name="basePackage" extends="struts-default" abstract="true">
+		<global-results>
+			<result name="error">error.jsp</result>
+		</global-results>
+	</package>
+
+	<!-- 首頁 -->
+	<package name="index" namespace="/" extends="basePackage">
+
+		<action name="index" class="cn.hfut.mam.action.NewsAction"
+			method="showIndexTitle">
+			<result name="success">/html/pages/index/index.jsp</result>
+		</action>
+		<action name="admin">
+			<result>/html/pages/admin/login.jsp</result>
+		</action>
+
+	</package>
+
+	<!-- 消息通知 -->
+	<package name="news" namespace="/news" extends="basePackage">
+
+
+		<action name="newsShow" class="cn.hfut.mam.action.NewsAction"
+			method="showAllTitle">
+			<result name="success">/html/pages/index/nav_3.jsp</result>
+		</action>
+		<action name="newsContent" class="cn.hfut.mam.action.NewsAction"
+			method="newsContent">
+			<result name="success">/html/pages/index/nav_3_detail.jsp</result>
+		</action>
+
+
+	</package>
+
+	<!-- 注册用户without登录 -->
+	<package name="membernotlogin" namespace="/membernotlogin" extends="basePackage">
+		<action name="register" class="cn.hfut.mam.action.MemberAction"
+			method="register">
+			<result name="success">/html/pages/index/index.jsp</result>
+			<result name="fail">/html/pages/index/register.jsp</result>
+		</action>
+
+		<action name="login" class="cn.hfut.mam.action.MemberAction"
+			method="login">
+			<result name="success">/index.action</result>
+		</action>
+
+		<action name="sentResetPwdCode" class="cn.hfut.mam.action.MemberAction"
+			method="sentResetPwdCode">
+
+		</action>
+
+		<action name="verifyCode" class="cn.hfut.mam.action.MemberAction"
+			method="verifyCode">
+
+		</action>
+
+		<action name="resetPwd" class="cn.hfut.mam.action.MemberAction"
+			method="resetPwd">
+			<result name="success" type="redirect">/index.action</result>
+		</action>
+
+
+	</package>
+
+	<!--注册用户 -->
+	<package name="member" namespace="/member" extends="basePackage">
+
+
+		<action name="exit" class="cn.hfut.mam.action.MemberAction"
+			method="exit">
+			<result name="success" type="redirect">/index.action</result>
+		</action>
+
+		<action name="modifyPwd" class="cn.hfut.mam.action.MemberAction"
+			method="modifyPwd">
+			<result name="fail">/html/pages/index/pupdatepw.jsp</result>
+			<result name="success">/html/pages/index/index.jsp</result>
+		</action>
+
+		<action name="yourPaper" class="cn.hfut.mam.action.PaperAction"
+			method="yourPaper">
+			<result name="success">/html/pages/index/pcenter.jsp</result>
+		</action>
+
+
+
+		<action name="addParti" class="cn.hfut.mam.action.ParticipantAction"
+			method="add">
+			<result name="success" type="redirect">showYourParti.action</result>
+		</action>
+		<action name="showYourParti" class="cn.hfut.mam.action.ParticipantAction"
+			method="show">
+			<result name="success">/html/pages/index/participants.jsp</result>
+		</action>
+
+		<action name="uploadPaper" class="cn.hfut.mam.action.PaperAction"
+			method="upload">
+			<result name="success" type="redirect">yourPaper.action</result>
+			<result name="fail">/html/pages/index/paper_upload.jsp</result>
+		</action>
+		
+		<action name="hotelbook" class="cn.hfut.mam.action.HotelBookAction"
+			method="book">
+			<result name="success" type="redirect">hotelbooked.action</result>
+		</action>
+		
+		<action name="hotelbooked" class="cn.hfut.mam.action.HotelBookAction"
+			method="show">
+			<result name="success">/html/pages/index/hotelbooked.jsp</result>
+		</action>
+		
+		<action name="payfees" class="cn.hfut.mam.action.MemberAction"
+			method="payFees">
+			<result name="success">/html/pages/index/payfees.jsp</result>
+		</action>
+
+	</package>
+
+	<!-- 资源 -->
+	<package name="resource" namespace="/resource" extends="basePackage">
+
+		<action name="resourceShow" class="cn.hfut.mam.action.ResourceAction"
+			method="show">
+			<result name="success">/html/pages/index/nav_5.jsp</result>
+		</action>
+
+		<action name="download" class="cn.hfut.mam.action.ResourceAction"
+			method="download">
+			<result name="success" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="contentDisposition">attachment;fileName="${downloadFileName}"</param>
+				<param name="inputName">downloadFile</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+	</package>
+
+	<!-- 管理员登录 -->
+	<package name="adminLogin" namespace="/adminLogin" extends="basePackage">
+		<action name="login" class="cn.hfut.mam.action.AdminAction"
+			method="login">
+			<result name="success" type="redirect">/html/pages/admin/index.jsp</result>
+						<result name="fail">/html/pages/admin/login.jsp</result>
+		</action>
+
+	</package>
+
+
+	<!-- 管理员 -->
+	<package name="admin" namespace="/admin" extends="basePackage">
+
+
+		<action name="adminNewsShow" class="cn.hfut.mam.action.NewsAction"
+			method="showAllTitle">
+			<result name="success">/html/pages/admin/index_look.jsp</result>
+		</action>
+
+		<action name="resource" class="cn.hfut.mam.action.ResourceAction"
+			method="show">
+			<result name="success">/html/pages/admin/resource_look.jsp</result>
+		</action>
+
+		<action name="paper" class="cn.hfut.mam.action.PaperAction"
+			method="show">
+			<result name="success">/html/pages/admin/paper_look.jsp</result>
+		</action>
+
+		<action name="partiShow" class="cn.hfut.mam.action.ParticipantAction"
+			method="partiShow">
+			<result name="success">/html/pages/admin/partic_look.jsp</result>
+		</action>
+
+		<action name="parti_pay" class="cn.hfut.mam.action.ParticipantAction"
+			method="pay">
+			<result name="success">partiShow.action?isPayed=false</result>
+		</action>
+
+		<action name="addNews" class="cn.hfut.mam.action.NewsAction"
+			method="addNews">
+			<result name="success">adminNewsShow.action</result>
+		</action>
+
+		<action name="deleteNews" class="cn.hfut.mam.action.NewsAction"
+			method="delete">
+			<result name="success" type="redirect">adminNewsShow.action
+			</result>
+		</action>
+
+		<action name="resourceUpload" class="cn.hfut.mam.action.ResourceAction"
+			method="upload">
+			<result name="success" type="redirect">resource.action</result>
+			<result name="fail">/html/pages/admin/index_upload.jsp</result>
+		</action>
+
+		<action name="deleteResource" class="cn.hfut.mam.action.ResourceAction"
+			method="delete">
+			<result name="success" type="redirect">resource.action</result>
+		</action>
+
+		<action name="downloadPaper" class="cn.hfut.mam.action.PaperAction"
+			method="download">
+			<result name="success" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="contentDisposition">attachment;fileName="${downloadFileName}"</param>
+				<param name="inputName">downloadFile</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		
+		<action name="exit" class="cn.hfut.mam.action.AdminAction"
+			method="exit">
+			<result name="success" type="redirect">/admin</result>
+		</action>
+		
+
+	</package>
+	
+	<!--招聘单位注册-->
+	<package name="employerregister" namespace="/employerregister" extends="basePackage">
+		<action name="register" class="cn.hfut.mam.action.EmployerAction"
+			method="register">
+			<result name="success">/html/pages/employe/index.jsp</result>
+			<result name="fail">/html/pages/employe/register.jsp</result>
+		</action>
+
+
+	</package>
+
+
+</struts>

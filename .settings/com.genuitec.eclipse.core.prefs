@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=WebRoot/ueditor/ueditor.all.min.js,WebRoot/ueditor/ueditor.all.js,WebRoot/resources/js
+validator.Unchecked=
