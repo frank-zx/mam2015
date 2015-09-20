@@ -2,6 +2,7 @@ package cn.hfut.mam.service;
 
 import java.io.Serializable;
 import cn.hfut.mam.dto.MemberInfo;
+import cn.hfut.mam.model.Member;
 
 /**
  * @author ZhangXu
@@ -39,6 +40,10 @@ public interface MemberService {
 	public void resetPwd(String m_email, String newpwd);
 	
 	public void payFees(String m_email,MemberInfo memberInfo);
+
+	public Boolean isPay(String email);
+
+	public Member checkFees(String m_email);
 
 
 }

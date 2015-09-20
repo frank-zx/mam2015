@@ -109,8 +109,8 @@
 			with (thisform) 
 			{
 				
-				if ($.trim($("#spinner1").val())==0&&$.trim($("#spinner1").val())==0)
-				{alert("请选择房间数量");return false}
+				<%--if ($.trim($("#spinner1").val())==0&&$.trim($("#spinner1").val())==0)
+				{alert("请选择房间数量");return false}--%>
 
 			}
 		}

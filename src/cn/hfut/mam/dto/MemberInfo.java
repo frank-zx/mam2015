@@ -5,27 +5,43 @@ import java.io.Serializable;
 import cn.hfut.mam.utils.Encrypt;
 
 /**
- * @author ZhangXu
- * 2015-3-6
- * 下午10:16:31
+ * @author ZhangXu 2015-3-6 下午10:16:31
  */
 public class MemberInfo implements Serializable {
 
 	private static final long serialVersionUID = -7595682776855378747L;
-	
+
 	private String email;
 	private String pwd;
 	private String pwd2;
 	private String newpwd;
 	private String newpwd2;
 	private String resetPwdCode;
-	private Boolean isDiscount;//是否在优惠时间前缴费
-	private int teacherNum;//缴费老师数
-	private int studentNum;//缴费学生数
-	private double fee;//缴费金额
-	private File img;//缴费转账银行回执单图片
-    
-	
+	private Boolean isDiscount;// 是否在优惠时间前缴费
+	private int teacherNum;// 缴费老师数
+	private int studentNum;// 缴费学生数
+	private double fee;// 缴费金额
+
+	private File img;// 缴费转账银行回执单图片
+	private String imgFileName;
+	private String imgContentType;
+
+	public String getImgFileName() {
+		return imgFileName;
+	}
+
+	public void setImgFileName(String imgFileName) {
+		this.imgFileName = imgFileName;
+	}
+
+	public String getImgContentType() {
+		return imgContentType;
+	}
+
+	public void setImgContentType(String imgContentType) {
+		this.imgContentType = imgContentType;
+	}
+
 	public Boolean getIsDiscount() {
 		return isDiscount;
 	}
@@ -51,10 +67,22 @@ public class MemberInfo implements Serializable {
 	}
 
 	public double getFee() {
+
+		if (isDiscount)
+			this.fee = teacherNum * 980 + studentNum * 480;
+		else
+			this.fee = teacherNum * 1280 + studentNum * 580;
+
 		return fee;
 	}
 
 	public void setFee(double fee) {
+
+		/*
+		 * if (isDiscount) this.fee = teacherNum * 980 + studentNum * 480; else
+		 * this.fee = teacherNum*1280+studentNum*580;
+		 */
+
 		this.fee = fee;
 	}
 
@@ -113,8 +141,5 @@ public class MemberInfo implements Serializable {
 	public void setResetPwdCode(String resetPwdCode) {
 		this.resetPwdCode = resetPwdCode.trim();
 	}
-	
-
-	
 
 }

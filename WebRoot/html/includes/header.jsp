@@ -15,21 +15,7 @@
 		</div>
 		<div class="navbar-collapse collapse" role="navigation">
 			<ul class="nav navbar-nav">
-			<%--<li class="dropdown"><a href="javascript:void(0);"
-					class="dropdown-toggle" data-toggle="dropdown"
-					aria-expanded="false">会议信息<b class="caret"></b>
-				</a>
-					<ul class="dropdown-menu">
-						<li><a href="html/pages/index/nav_2.jsp">会议简介</a></li>
-						<li><a href="html/pages/index/nav_2.jsp">论文征集</a></li>
-						<li><a href="html/pages/index/nav_2.jsp">时间安排</a></li>
-						<li><a href="html/pages/index/nav_2.jsp">会议缴费</a></li>
-						<li><a href="html/pages/index/nav_2.jsp">住宿信息</a></li>
-						<li><a href="html/pages/index/nav_2.jsp">交通信息</a></li>
-						<li><a href="html/pages/index/nav_2.jsp">特邀主旨演讲</a></li>
-						<li><a href="html/pages/index/nav_2.jsp">往届会议</a></li>
-					</ul></li>
-					--%><li><a href="html/pages/index/nav_2.jsp">会议信息</a>
+	            <li><a href="html/pages/index/nav_2.jsp">会议信息</a>
 				</li>
 				<li><a href="news/newsShow.action">最新消息</a>
 				</li>
@@ -37,11 +23,13 @@
 				</li>
 				<li><a href="resource/resourceShow.action">资源下载</a>
 				</li>
+				<li><a href="recuit/recuitShow.action">招聘信息</a>
+				</li>
 				<li><a href="html/pages/index/nav_6.jsp">常见问题</a>
 				</li>
-				<li><a href="html/pages/index/nav_about.jsp">关于我们</a>
+				<%--<li><a href="html/pages/index/nav_about.jsp">关于我们</a>
 				</li>
-			</ul>
+			--%></ul>
 			<c:if test="${!empty sessionScope.email}">
 				<ul class="nav navbar-nav navbar-right hidden-sm">
 

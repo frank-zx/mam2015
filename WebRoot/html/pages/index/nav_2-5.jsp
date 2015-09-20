@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <p><strong>3、会议地点</strong></p>
           <p>合肥滨湖世纪金源大酒店</p>
           <p>地址：滨湖新区徽州大道5558号(滨湖国际会展中心旁）</p>
-          <p>电话：(0551)6868888</p>
+          <p>电话：(0551)66868888</p>
          
        </div>
       </div>

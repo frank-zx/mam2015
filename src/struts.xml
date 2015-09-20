@@ -16,6 +16,7 @@
 	<constant name="struts.i18n.reload" value="true" />
 	<!-- 文件上传最大值 -->
 	<constant name="struts.multipart.maxSize" value="104857600" />
+	<constant name="struts.multipart.saveDir" value="/tmp" />
 	<!-- 让struts2支持动态方法调用 -->
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 	<!-- Action名称中是否还是用斜线 -->
@@ -61,7 +62,8 @@
 	</package>
 
 	<!-- 注册用户without登录 -->
-	<package name="membernotlogin" namespace="/membernotlogin" extends="basePackage">
+	<package name="membernotlogin" namespace="/membernotlogin"
+		extends="basePackage">
 		<action name="register" class="cn.hfut.mam.action.MemberAction"
 			method="register">
 			<result name="success">/html/pages/index/index.jsp</result>
@@ -127,20 +129,31 @@
 			<result name="success" type="redirect">yourPaper.action</result>
 			<result name="fail">/html/pages/index/paper_upload.jsp</result>
 		</action>
-		
+
 		<action name="hotelbook" class="cn.hfut.mam.action.HotelBookAction"
 			method="book">
 			<result name="success" type="redirect">hotelbooked.action</result>
 		</action>
-		
+
 		<action name="hotelbooked" class="cn.hfut.mam.action.HotelBookAction"
 			method="show">
 			<result name="success">/html/pages/index/hotelbooked.jsp</result>
 		</action>
-		
+        
+        <action name="pay" class="cn.hfut.mam.action.MemberAction"
+			method="pay">
+			<result name="success">/html/pages/index/payfees.jsp</result>
+			<result name="fail">/member/feesCheck.action</result>
+		</action>
+        
 		<action name="payfees" class="cn.hfut.mam.action.MemberAction"
 			method="payFees">
-			<result name="success">/html/pages/index/payfees.jsp</result>
+			<result name="success">/member/feesCheck.action</result>
+		</action>
+		
+		<action name="feesCheck" class="cn.hfut.mam.action.MemberAction"
+			method="checkFees">
+			<result name="success">/html/pages/index/feesCheck.jsp</result>
 		</action>
 
 	</package>
@@ -169,8 +182,9 @@
 	<package name="adminLogin" namespace="/adminLogin" extends="basePackage">
 		<action name="login" class="cn.hfut.mam.action.AdminAction"
 			method="login">
-			<result name="success" type="redirect">/html/pages/admin/index.jsp</result>
-						<result name="fail">/html/pages/admin/login.jsp</result>
+			<result name="success" type="redirect">/html/pages/admin/index.jsp
+			</result>
+			<result name="fail">/html/pages/admin/login.jsp</result>
 		</action>
 
 	</package>
@@ -236,24 +250,32 @@
 				<param name="bufferSize">1024</param>
 			</result>
 		</action>
-		
-		
+
+
 		<action name="exit" class="cn.hfut.mam.action.AdminAction"
 			method="exit">
 			<result name="success" type="redirect">/admin</result>
 		</action>
-		
 
-	</package>
-	
-	<!--招聘单位注册-->
-	<package name="employerregister" namespace="/employerregister" extends="basePackage">
-		<action name="register" class="cn.hfut.mam.action.EmployerAction"
-			method="register">
-			<result name="success">/html/pages/employe/index.jsp</result>
-			<result name="fail">/html/pages/employe/register.jsp</result>
+		<action name="addRecuit" class="cn.hfut.mam.action.RecuitAction"
+			method="addRecuit">
+			<result name="success">/html/pages/admin/addRecuit.jsp</result>
 		</action>
 
+
+	</package>
+
+	<!-- 招聘 -->
+	<package name="recuit" namespace="/recuit" extends="basePackage">
+
+		<action name="recuitShow" class="cn.hfut.mam.action.RecuitAction"
+			method="showRecuit">
+			<result name="success">/html/pages/index/recuit.jsp</result>
+		</action>
+		<action name="recuitContent" class="cn.hfut.mam.action.RecuitAction"
+			method="recuitContent">
+			<result name="success">/html/pages/index/recuit_detail.jsp</result>
+		</action>
 
 	</package>
 

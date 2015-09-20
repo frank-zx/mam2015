@@ -22,6 +22,62 @@ request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+pa
         <script src="/assets/js/html5shiv.min.js?v=f7c242d291"></script>
         <script src="/assets/js/respond.min.js?v=f7c242d291"></script>
         <![endif]-->
+<script type="text/javascript"" >
+	window.onload = function(){
+	var realname = document.getElementById('realname');
+    var org = document.getElementById('org');
+    var totalfee = document.getElementById('totalfee');
+	var teafee=document.getElementById('teafee');
+	var stufee=document.getElementById('stufee');
+	var date1=document.getElementById('isDiscount1');
+    var date2=document.getElementById('isDiscount2');
+	var btn=document.getElementById("btn-sub");
+	var btn1=document.getElementById("isDiscount1");
+	var btn2=document.getElementById("isDiscount2");
+  btn1.onclick=function Discount1(){
+	teafee.innerHTML=980;
+	stufee.innerHTML=480;
+	totalfee.innerHTML=0;
+	realname.value=0;
+	org.value=0;
+     }		
+   btn2.onclick=function Discount2(){
+	teafee.innerHTML=1280;
+	stufee.innerHTML=580;
+	totalfee.innerHTML=0;
+	realname.value=0;
+	org.value=0;
+     };	           
+   document.onkeyup = function gettotal() {
+      var teanum = parseInt(realname.value);
+      var stunum = parseInt(org.value);
+      var sfee = parseInt(stufee.childNodes[0].nodeValue);
+      var tfee = parseInt(teafee.childNodes[0].nodeValue);
+      totalfee.innerHTML = parseInt(teanum*tfee+stunum*sfee);
+      };
+    btn.onclick=function check(){ 		
+	   if (realname.value=="0"&&org.value=="0"){
+	   alert("教师人数和学生人数不可同时为0！");
+       return false;			
+	     }
+       else{
+          var file = document.getElementById("js-fileInput").value;
+	      if (file ==""){
+		     alert ("请上传图片！");
+		      return false;
+	           }
+	      else{
+		       var fileType=(file.substring(file.lastIndexOf(".")+1,file.length)).toLowerCase();
+		       if (!(fileType=="jpg"||fileType=="JPG"||fileType=="jpeg"||fileType=="JPEG")){
+			       alert("图片格式不符！");
+			        return false;
+		            }
+	           
+	          }		 			
+           }	
+        }
+}
+</script>
 </head>
 <body>
     <%
@@ -43,41 +99,43 @@ request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+pa
 			<form id="info-sub" action="member/payfees.action" method="post" enctype="multipart/form-data">
               <div class="form-content">
 	              <div class="form-title" style="text-align: left;height:35px;">
-	              	
+	              	<font color="red" style="width: 255px;float: right;font-size:20px;">${requestScope.payfees}</font>
 	              	<h4 style="width:100px;float:left;">  &gt; 会议缴费 </h4>
-	              	<font color="red" style="width: 255px;float: right;">${requestScope.payfees}</font>
+	              	
 	              </div>
 	              <div class="clearfloat"></div>
 	              
 	              <div class="form-group form-radio">
-					 	<label for="isDiscount" style="font-size: 16px;">缴费日期：</label>
-							  <input  type="radio" name="isDiscount" id="isDiscount1" value="true">
-							  2015年10月15日以前（包括10月15日）
-							  <input  type="radio" name="isDiscount" id="isDiscount2" value="false" checked>
-							  2015年10月15日以后
+					 	<label for="isDiscount" style="font-size: 16px;" id="isDiscount">缴费日期：</label>
+						      <input  type="radio" name="isDiscount" id="isDiscount1" value="true"  checked >
+							  2015-10-15 前（包含）
+							  <input  type="radio" name="isDiscount" id="isDiscount2" value="false"   >
+							  2015-10-15 后
+					  
 					</div>
               	  <label for="realname" class="control-label">教师人数：</label>
-	              <input type="text" name="teacherNum" class="form-control input-text control-input" placeholder="请输入教师人数" id="realname">
+	              <input type="text" name="teacherNum" class="form-control input-text control-input" placeholder="请输入教师人数" id="realname" value="0" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
 	              <div class="height-margin"></div>
 
 	              <label for="tel" class="control-label">教师费用：</label>
-	              <label for="tel" class="control-label">980元/人</label>
+	              <label for="tel" class="control-label"><span id="teafee" value="980" >980</span>元/人</label>
 	              <div class="height-margin"></div>
 	              
 	              <label for="org" class="control-label">学生人数：</label>
-	              <input type="text" name="studentNum" class="form-control input-text control-input" placeholder="请输入学生人数" id="org">
+	              <input type="text" name="studentNum" class="form-control input-text control-input" placeholder="请输入学生人数" id="org" value="0" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
 	              <div class="height-margin"></div>
      
      	           <label for="email" class="control-label">学生费用：</label>
-	               <label for="email" class="control-label">480元/人</label>
+	               <label for="email" class="control-label"><span id="stufee" value="480" >480</span>元/人</label>
 	              <div class="height-margin"></div>
 	              
-	              <label for="email" class="control-label">总费用：</label>
-	               <label for="email" class="control-label" name="fee" value="5000">5000元</label>
+	              <label for="email" class="control-label">总费用：<span name="fee" id="totalfee"  style="color:red">0</span></label>
+	              
+	               <label for="email" class="control-label"  >元</label>
 	              
 	              <div class="form-group">
 						<label for="file" class="control-label">凭据上传：<font color="red" size="2px">（请上传清晰的银行回执单图片，仅支持.jpg文件）</font></label> 
-						<input type="file" name="img" id="js-fileInput" class="form-control">
+						<input type="file" name="img" id="js-fileInput" class="form-control" accept=".jpg,.jpeg"/>
 					</div>
 	              <div class="height-margin"></div>
 	              

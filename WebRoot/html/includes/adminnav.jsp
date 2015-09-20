@@ -102,6 +102,31 @@
                 </ul>
           
             </li>
+            
+             <li class="nav-li nav-first ">
+                <div class="nav-head">
+                    <a href="javascript:void(0);">
+                        <span class="nav-title">招聘管理</span>
+                        <span class="down"></span>
+                        <br>
+                        <i></i>
+                    </a>
+                </div>
+                <ul class="nav-body">
+                    <li class="li-active">
+                        <a href="html/pages/admin/addRecuit.jsp">
+                            <span class="li-title">发布招聘</span>
+                            <span class="left"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="li-title">查看消息</span>
+                            <span class="left"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
         
         <a href="admin/exit.action">退出</a>

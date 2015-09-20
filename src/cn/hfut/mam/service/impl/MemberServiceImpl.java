@@ -112,7 +112,7 @@ public class MemberServiceImpl implements MemberService {
 		int studentNum = memberInfo.getStudentNum();
 		double fee = memberInfo.getFee();
 
-		String imgFileName = m_email + new Date().toString() + ".jpg";
+		String imgFileName = m_email + ".jpg";
 		String realpath = ServletActionContext.getServletContext().getRealPath(
 				"/jiaofeiimg");
 
@@ -132,10 +132,25 @@ public class MemberServiceImpl implements MemberService {
 			m.setTeacherNum(teacherNum);
 			m.setFee(fee);
 			m.setPath("jiaofeiimg/" + imgFileName);
-			
 
 		}
 
+	}
+
+	@Override
+	public Boolean isPay(String email) {
+		Member m = this.memberDao
+				.get("from Member where email='" + email + "'");
+		if (m.getIsDiscount() != null)
+			return true;
+		return false;
+	}
+
+	@Override
+	public Member checkFees(String m_email) {
+		Member m = this.memberDao
+				.get("from Member where email='" + m_email + "'");
+		return m;
 	}
 
 }

@@ -21,14 +21,14 @@ public class Encrypt {
 	 */
 	public static void main(String[] args) {
 		// md5加密测试
-		String md5_1 = md5("");
+		String md5_1 = md5("hfutsom");
 		String md5_2 = md5("孙宇");
 		System.out.println(md5_1 + "\n" + md5_2);
 		// sha加密测试
 		String sha_1 = sha("123456");
 		String sha_2 = sha("孙宇");
 		System.out.println(sha_1 + "\n" + sha_2);
-		
+		System.out.println("----------------------------------");
 		System.out.println(md5AndSha("hfutsom"));
 
 	}

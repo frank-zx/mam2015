@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -107,8 +107,10 @@
 								<%--<a href="javascript:void(0);" class=""><button class="btn btn-primary btn-lg btn-block">酒店预订</button>酒店预订</a>							
 						 <a href="member/yourPaper.action" class=""><button class="btn btn-primary btn-lg btn-block">查看论文</button>查看论文</a>
 						 <a href="html/pages/index/pupdatepw.jsp" class=""><button class="btn btn-primary btn-lg btn-block">修改密码</button>修改密码</a>
-						--%>
-								<button class="btn btn-primary btn-lg btn-block" onclick="location='${ctx}/html/pages/index/payfees.jsp'">会议缴费</button>
+						--%>    
+						        
+						       	<button class="btn btn-primary btn-lg btn-block" onclick="location='${ctx}/member/pay.action'">会议缴费</button>
+						       
 								<button class="btn btn-primary btn-lg btn-block" onclick="location='${ctx}/html/pages/index/hotelbook.jsp'">酒店预订</button>
 								<button class="btn btn-primary btn-lg btn-block"
 									onclick="location='${ctx}/html/pages/index/pupdatepw.jsp'">修改密码</button>
@@ -185,34 +187,38 @@
 				</div>
 				<div class="jiabin-info">
 					<div class="info-title">
-						<h4>主旨演讲嘉宾<font color=grey size=3px>&nbsp;(暂定)</font></h4>
+						<h4>主旨演讲嘉宾<font color=grey size=3px>&nbsp;</font></h4>
 					</div>
 					<div class="info-list">
 						<div class="list-content">
-							<a  class="thumbnail img-border"> <img
-								data-src="holder.js/180x180" alt="" src="resources/img/yangshanlin.jpg">
-							</a> <a  class="jiabin-name"> 杨善林 </a>
+							<a href="html/pages/index/infoy.jsp" target="_blank" class="thumbnail img-border"> 
+							<img data-src="holder.js/180x180" alt="" src="resources/img/yangshanlin.jpg">
+							</a> 
+							<a href="html/pages/index/infoy.jsp" target="_blank" class="jiabin-name"> 杨善林 </a>
 						</div>
 						<div class="clearfloat"></div>
 						<div class="list-content">
-							<a class="thumbnail img-border"> <img
-								data-src="holder.js/180x180" alt="" src="resources/img/fangshucheng.jpg">
-							</a> <a  class="jiabin-name"> 方述诚 </a>
+							<a href="html/pages/index/infoybl.jsp" target="_blank" class="thumbnail img-border"> <img
+								data-src="holder.js/180x180" alt="" src="resources/img/youbolong.png">
+							</a> 
+							<a href="html/pages/index/infoybl.jsp" target="_blank" class="jiabin-name"> 游伯龙 </a>
 						</div>
 						<div class="clearfloat"></div>
 						<div class="list-content">
-							<a  class="thumbnail img-border"> <img
+							<a href="html/pages/index/infol.jsp" target="_blank" class="thumbnail img-border"> <img
 								data-src="holder.js/180x180" alt="" src="resources/img/lishantong.jpg">
-							</a> <a  class="jiabin-name"> 李善同 </a>
+							</a> 
+							<a href="html/pages/index/infol.jsp" target="_blank" class="jiabin-name"> 李善同 </a>
 						</div>
 						<div class="clearfloat"></div>
-						<%--<div class="list-content">
-							<a href="" class="thumbnail img-border"> <img
-								data-src="holder.js/180x180" alt="" src="resources/img/exe.jpg">
-							</a> <a  class="jiabin-name"> 风清扬 </a>
+						<div class="list-content">
+							<a href="html/pages/index/infola.jsp"target="_blank" class="thumbnail img-border"> <img
+								data-src="holder.js/180x180" alt="" src="resources/img/zuoyanan.jpg">
+							</a> 
+                            <a href="html/pages/index/infola.jsp" target="_blank" class="jiabin-name"> 左延安 </a>
 						</div>
 						<div class="clearfloat"></div>
-					--%></div>
+					</div>
 				</div>
 				<div class="quast-road">
 					<div class="info-title">

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.opensymphony.xwork2.ModelDriven;
 
 import cn.hfut.mam.dto.MemberInfo;
+import cn.hfut.mam.model.Member;
 import cn.hfut.mam.service.MemberService;
 import cn.hfut.mam.utils.MyAuthenticator;
 
@@ -17,6 +18,15 @@ public class MemberAction extends BaseAction implements ModelDriven<MemberInfo> 
 	private static final long serialVersionUID = -965583866925034307L;
 	private MemberService memberService;
 	MemberInfo memberInfo = new MemberInfo();
+	Member m=null;
+
+	public Member getM() {
+		return m;
+	}
+
+	public void setM(Member m) {
+		this.m = m;
+	}
 
 	@Override
 	public MemberInfo getModel() {
@@ -31,7 +41,6 @@ public class MemberAction extends BaseAction implements ModelDriven<MemberInfo> 
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
-
 
 	public String register() throws Exception {
 
@@ -88,8 +97,6 @@ public class MemberAction extends BaseAction implements ModelDriven<MemberInfo> 
 		return "fail";
 	}
 
-	
-
 	public void sentResetPwdCode() throws Exception {
 		String email = memberInfo.getEmail();
 		if (this.memberService.emailExist(email)) {
@@ -128,11 +135,26 @@ public class MemberAction extends BaseAction implements ModelDriven<MemberInfo> 
 		return "fail";
 
 	}
-	
+
+	public String pay() throws Exception {
+		String m_email = (String) session.get("email");
+		if (this.memberService.isPay(m_email))
+			return "fail";
+		else
+			return "success";
+	}
+
 	public String payFees() throws Exception {
 		String m_email = (String) session.get("email");
-		this.memberService.payFees(m_email,memberInfo);
-		request.put("payfees", "缴费记录上传完成");
+		this.memberService.payFees(m_email, memberInfo);
+
+		//request.put("payfees", "缴费记录上传完成!");
+		return "success";
+	}
+	
+	public String checkFees() throws Exception {
+		String m_email = (String) session.get("email");
+		m=this.memberService.checkFees(m_email);
 		return "success";
 	}
 
